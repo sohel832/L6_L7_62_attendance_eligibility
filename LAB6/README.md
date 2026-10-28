@@ -1,18 +1,39 @@
-# L6_L7_62 — Attendance Eligibility
-
-Lab 6: Code and Branch Coverage
+# LAB 6 — Attendance Eligibility Coverage Analysis
 
 ## About
 
-A small Python module that calculates a student's attendance percentage with medical leave, decides exam eligibility and chooses which attendance warning to send.
+This directory contains the source application and test suites for **Lab 6: Code and Branch Coverage Analysis**.
 
-## Files
+## Files Overview
 
 | File | Description |
 |------|-------------|
-| `attendance_eligibility.py` | The module under test |
-| `test_attendance_eligibility.py` | Starter test file |
+| `attendance_eligibility.py` | The core Python module under test |
+| `test_attendance_eligibility.py` | Complete synchronized test suite |
+| `CodeCoverageTest_attendance_eligibility.py` | Test suite achieving **100% Code Coverage** |
+| `BranchCoverageTest_attendance_eligibility.py` | Test suite achieving **100% Branch Coverage** (22/22 branches) |
+| `code_coverage.png` | Terminal output screenshot for code coverage |
+| `branch_coverage.png` | Terminal output screenshot for branch coverage |
 
-Keep all your Lab 6 work in this `LAB6` folder. Lab 7 will be added to this repo later.
+---
 
-Refer to the lab handout for instructions.
+## Commands to Verify
+
+### 1. Code Coverage
+```powershell
+coverage run -m pytest CodeCoverageTest_attendance_eligibility.py
+coverage report -m
+```
+
+### 2. Branch Coverage
+```powershell
+coverage run --branch -m pytest BranchCoverageTest_attendance_eligibility.py
+coverage report -m
+```
+
+---
+
+## Results Summary
+
+* **Line Coverage:** **100%** (0 lines missed)
+* **Branch Coverage:** **100%** (22 out of 22 branches covered)
