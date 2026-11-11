@@ -1,25 +1,43 @@
+
 def normalize_srn(srn):
-    """
-    Trims and upper-cases a student registration number.
-    Assumes srn is a non-empty string.
-    """
+    if not isinstance(srn, str):
+        return ""
+
     return srn.strip().replace(' ', '').upper()
 
+
 def attendance_from_ratio(text):
-    """
-    Converts 'ATTENDED/HELD' into a whole-number percentage.
-    Assumes both values are whole numbers and HELD is not zero.
-    """
-    attended, held = text.split('/')
-    return int(attended) * 100 // int(held)
+    if not isinstance(text, str):
+        return 0
+
+    try:
+        parts = text.split('/')
+        if len(parts) != 2:
+            return 0
+
+        attended = int(parts[0].strip())
+        held = int(parts[1].strip())
+
+        if attended < 0 or held <= 0 or attended > held:
+            return 0
+
+        return attended * 100 // held
+
+    except (ValueError, TypeError):
+        return 0
+
 
 def attendance_from_register(marks):
-    """
-    Works out the attendance percentage from a string of P (present) and A (absent).
-    Assumes marks has at least one character.
-    """
+    if not isinstance(marks, str):
+        return 0
+
     marks = marks.strip().upper()
+
+    if not marks or any(ch not in 'PA' for ch in marks):
+        return 0
+
     return marks.count('P') * 100 // len(marks)
+
 
 def main():
     print("==== Running normalize_srn ====")
@@ -33,6 +51,7 @@ def main():
     print("\n==== Running attendance_from_register ====")
     value = input("Enter the register as P/A marks (e.g. PPAPP): ")
     print("Attendance percent:", attendance_from_register(value))
+
 
 if __name__ == "__main__":
     main()
